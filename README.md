@@ -265,6 +265,59 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 ---
 
+## 获取新闻
+
+本项目是**定时批处理管道**，不是实时流。新闻数据需要主动触发采集才能入库。
+
+### 方式一：命令行直接运行（推荐）
+
+无需 Airflow，直接调用爬虫 → DQ 检查 → 入库 → MinIO 归档：
+
+```bash
+python scripts/run_pipeline.py
+```
+
+输出示例：
+
+```
+[36kr] 30 articles
+[huxiu] 40 articles
+[ithome] 60 articles
+[sina_finance] 50 articles
+[yicai] 30 articles
+[eeo] 15 articles
+[bjnews] 20 articles
+[bjdaily] 7 articles
+[bjbusiness] 19 articles
+DQ: score=84.1 rows=271 null_title=0 dup=0
+Pipeline Complete
+```
+
+### 方式二：Airflow 定时调度
+
+打开 `http://localhost:8080`（admin / admin），找到 `beijing_news_pipeline` DAG：
+
+- **手动触发**：点击右侧 ▶ 按钮 → Trigger DAG
+- **定时执行**：默认每天 8:00 和 18:00 自动运行
+
+### 修改采集频率
+
+编辑 `dags/beijing_news_pipeline.py` 中的 `schedule` 参数：
+
+```python
+schedule="0 8,18 * * *"    # 默认：每天 8 点和 18 点
+schedule="0 * * * *"       # 每小时
+schedule="*/30 * * * *"    # 每 30 分钟
+```
+
+修改后重启 Airflow 容器使配置生效：
+
+```bash
+docker compose restart airflow-scheduler
+```
+
+---
+
 ## 添加新闻源
 
 1. 在 `dags/scrapers/` 创建爬虫文件，继承 `BaseScraper`，实现 `fetch()` 方法
