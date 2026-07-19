@@ -1,0 +1,320 @@
+/* ========================================
+   Beijing News MiniApp — Global Theme
+   Adapted from frontend/styles.css
+   ======================================== */
+
+/* ---- CSS Variables ---- */
+page {
+  --bg: #0a0c14;
+  --bg-alt: #0d0f18;
+  --surface: #151823;
+  --surface-hover: #1b1f2e;
+  --border: #242840;
+  --border-light: #2d3250;
+  --text: #e4e7f0;
+  --text-dim: #9098b8;
+  --text-muted: #5c6380;
+  --blue: #5eb8ff;
+  --blue-bg: rgba(94,184,255,.1);
+  --amber: #f0b848;
+  --amber-bg: rgba(240,184,72,.1);
+  --green: #4ec98b;
+  --green-bg: rgba(78,201,139,.1);
+  --red: #e86070;
+  --red-bg: rgba(232,96,112,.1);
+  --accent: #6c8fff;
+  --accent-bg: rgba(108,143,255,.1);
+  --radius: 16rpx;
+  --radius-sm: 12rpx;
+  --radius-lg: 24rpx;
+  --font: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 28rpx;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Category Tabs ---- */
+.cat-tabs {
+  display: flex;
+  gap: 16rpx;
+  padding: 20rpx 24rpx;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.cat-tab {
+  flex: 1;
+  text-align: center;
+  padding: 12rpx 0;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-dim);
+  border-bottom: 4rpx solid transparent;
+  transition: all 0.2s;
+}
+.cat-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.cat-tab .count {
+  font-size: 22rpx;
+  color: var(--text-muted);
+  margin-left: 6rpx;
+  font-weight: 400;
+}
+
+/* ---- Article Card ---- */
+.article-card {
+  padding: 24rpx;
+  margin: 0 24rpx 16rpx;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 2rpx solid var(--border);
+  transition: all 0.15s;
+}
+.article-card:active {
+  background: var(--surface-hover);
+  border-color: var(--border-light);
+}
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 12rpx;
+}
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+.card-source {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+.card-date {
+  font-size: 22rpx;
+  color: var(--text-muted);
+}
+.card-summary {
+  font-size: 26rpx;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-top: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+.badge::before {
+  content: "";
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+}
+.badge-tech { background: var(--blue-bg); color: var(--blue); }
+.badge-tech::before { background: var(--blue); }
+.badge-finance { background: var(--amber-bg); color: var(--amber); }
+.badge-finance::before { background: var(--amber); }
+.badge-local { background: var(--green-bg); color: var(--green); }
+.badge-local::before { background: var(--green); }
+
+/* ---- Detail Page ---- */
+.detail-container {
+  padding: 24rpx;
+}
+.detail-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 20rpx;
+}
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 2rpx solid var(--border);
+  margin-bottom: 24rpx;
+}
+.detail-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+.detail-summary {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20rpx 24rpx;
+  margin-bottom: 24rpx;
+  border-left: 6rpx solid var(--accent);
+}
+.detail-summary text {
+  font-size: 28rpx;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+.detail-content {
+  font-size: 30rpx;
+  line-height: 2;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.detail-actions {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 40rpx;
+  padding-top: 24rpx;
+  border-top: 2rpx solid var(--border);
+}
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 16rpx;
+  border-radius: var(--radius-sm);
+  border: 2rpx solid var(--border);
+  background: var(--surface);
+  color: var(--text-dim);
+  font-size: 26rpx;
+}
+.action-btn:active {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+/* ---- Search Page ---- */
+.search-header {
+  padding: 16rpx 24rpx;
+  background: var(--bg);
+  border-bottom: 2rpx solid var(--border);
+}
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 0 20rpx;
+  border: 2rpx solid var(--border);
+}
+.search-input-wrap.focused {
+  border-color: var(--accent);
+}
+.search-input {
+  flex: 1;
+  height: 72rpx;
+  font-size: 28rpx;
+  color: var(--text);
+}
+.search-cancel {
+  font-size: 28rpx;
+  color: var(--text-dim);
+  padding: 8rpx 16rpx;
+  white-space: nowrap;
+}
+
+/* ---- Skeleton (loading placeholder) ---- */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-hover) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+.skeleton-card {
+  margin: 0 24rpx 16rpx;
+  padding: 24rpx;
+}
+.skeleton-line {
+  height: 28rpx;
+  margin-bottom: 16rpx;
+}
+.skeleton-line:last-child {
+  width: 60%;
+  margin-bottom: 0;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---- Empty State ---- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 40rpx;
+}
+.empty-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3rpx dashed var(--border);
+  margin-bottom: 24rpx;
+}
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-muted);
+}
+
+/* ---- Loading More ---- */
+.load-more {
+  text-align: center;
+  padding: 24rpx;
+  font-size: 24rpx;
+  color: var(--text-muted);
+}
+
+/* ---- Header Bar (search icon + title) ---- */
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 24rpx;
+}
+.list-header-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text);
+}
+.search-icon-btn {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2rpx solid var(--border);
+}
+.search-icon-btn:active {
+  background: var(--surface-hover);
+}

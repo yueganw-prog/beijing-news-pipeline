@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+<style>
+body{background:#0a0c14;color:#e4e7f0;font-family:sans-serif;padding:40px}
+.green{color:#4ec98b}
+.red{color:#e86070}
+</style>
+</head>
+<body>
+<h2>诊断页面</h2>
+<div id="api-test">API 测试中...</div>
+<div id="vue-test"></div>
+
+<script src="vue.js"></script>
+<script>
+// 1. Vue 加载测试
+document.getElementById('vue-test').innerHTML = '<span class="green">Vue.js 已加载: v' + Vue.version + '</span>';
+
+// 2. API 连通性测试
+fetch('http://localhost:8000/health')
+  .then(r => r.json())
+  .then(d => document.getElementById('api-test').innerHTML = '<span class="green">API 连通: ' + JSON.stringify(d) + '</span>')
+  .catch(e => document.getElementById('api-test').innerHTML = '<span class="red">API 失败: ' + e.message + '</span>');
+</script>
+</body>
+</html>

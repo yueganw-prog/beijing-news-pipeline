@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "北京新闻",
+        "navigationBarBackgroundColor": "#0a0c14",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#0a0c14",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/detail/detail",
+      "style": {
+        "navigationBarTitleText": "文章详情",
+        "navigationBarBackgroundColor": "#0a0c14",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#0a0c14"
+      }
+    },
+    {
+      "path": "pages/search/search",
+      "style": {
+        "navigationBarTitleText": "搜索",
+        "navigationBarBackgroundColor": "#0a0c14",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#0a0c14"
+      }
+    },
+    {
+      "path": "pages/webview/webview",
+      "style": {
+        "navigationBarTitleText": "原文",
+        "navigationBarBackgroundColor": "#0a0c14",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarBackgroundColor": "#0a0c14",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Beijing News",
+    "backgroundColor": "#0a0c14",
+    "backgroundColorTop": "#0a0c14",
+    "backgroundColorBottom": "#0a0c14"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^c-(.*)": "@/components/c-$1/c-$1.vue"
+    }
+  }
+}

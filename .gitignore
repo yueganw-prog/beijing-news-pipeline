@@ -1,0 +1,53 @@
+# Beijing News Pipeline - .gitignore
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# --- Virtual environment ---
+.local/airflow-venv/
+.local/airflow/
+.local/minio/
+.local/pg/
+.local/*.exe
+.local/*.zip
+
+# --- Node ---
+node_modules/
+frontend/node_modules/
+frontend/package-lock.json
+frontend/yarn.lock
+miniapp/node_modules/
+
+# --- Logs ---
+logs/
+*.log
+
+# --- Environment ---
+.env
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+.docker/
+
+# --- Secrets ---
+*.pem
+*.key
+cert/
+nginx/ssl/
+
+# --- OS generated ---
+*.bak
+.directory

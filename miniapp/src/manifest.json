@@ -1,0 +1,24 @@
+{
+  "name": "Beijing News",
+  "appid": "wxbdb9553a0f81328d",
+  "description": "北京新闻聚合管道 - 科技/财经/本地新闻浏览",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "wxbdb9553a0f81328d",
+    "setting": {
+      "urlCheck": false,
+      "es6": true,
+      "postcss": true,
+      "minified": true
+    },
+    "usingComponents": true,
+    "permission": {},
+    "requiredPrivateInfos": []
+  },
+  "uniStatistics": {
+    "enable": false
+  },
+  "vueVersion": "3"
+}
