@@ -269,9 +269,9 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 本项目是**定时批处理管道**，不是实时流。新闻数据需要主动触发采集才能入库。
 
-### 方式一：命令行直接运行（推荐）
+### 方式一：命令行一键运行（推荐）
 
-无需 Airflow，直接调用爬虫 → DQ 检查 → 入库 → MinIO 归档：
+`scripts/run_pipeline.py` 一次执行完整流程：**采集 → 入库 → DQ → 归档 → 记录**。
 
 ```bash
 python scripts/run_pipeline.py
@@ -280,18 +280,17 @@ python scripts/run_pipeline.py
 输出示例：
 
 ```
-[36kr] 30 articles
-[huxiu] 40 articles
-[ithome] 60 articles
-[sina_finance] 50 articles
-[yicai] 30 articles
-[eeo] 15 articles
-[bjnews] 20 articles
-[bjdaily] 7 articles
-[bjbusiness] 19 articles
-DQ: score=84.1 rows=271 null_title=0 dup=0
-Pipeline Complete
+[36kr] 30 篇采集, 30 篇新入库
+[huxiu] 49 篇采集, 49 篇新入库
+[ithome] 60 篇采集, 60 篇新入库
+...
+入库完成，共 280 篇新文章
+DQ: score=84.1 rows=280 null_title=0 dup=0
+归档 280 篇到 MinIO
+=== 管道完成 ===
 ```
+
+> **注意**：Airflow DAG（`beijing_news_pipeline`）只负责调度采集和归档，不写入 `articles` 表。始终用 `run_pipeline.py` 来入库文章。
 
 ### 方式二：Airflow 定时调度
 
@@ -299,6 +298,8 @@ Pipeline Complete
 
 - **手动触发**：点击右侧 ▶ 按钮 → Trigger DAG
 - **定时执行**：默认每天 8:00 和 18:00 自动运行
+
+> 如果 Airflow 触发后前端看不到新数据，再运行一次 `python scripts/run_pipeline.py` 入库即可。
 
 ### 修改采集频率
 
