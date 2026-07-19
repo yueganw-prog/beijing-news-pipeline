@@ -6,6 +6,7 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+!frontend/dist/
 .eggs/
 
 # --- Virtual environment ---

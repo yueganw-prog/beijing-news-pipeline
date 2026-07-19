@@ -4,9 +4,10 @@ from contextlib import asynccontextmanager
 from datetime import datetime, date, timezone
 from typing import Optional
 
-from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, Query, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, ConfigDict
 import asyncpg
 import os
 
@@ -33,6 +34,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# --- API Key auth (optional — disabled when API_KEY is unset) ---
+
+API_KEY = os.getenv("API_KEY", "")
+
+
+@app.middleware("http")
+async def api_key_middleware(request: Request, call_next):
+    if API_KEY and request.url.path != "/health":
+        key = request.headers.get("X-API-Key", "")
+        if key != API_KEY:
+            return JSONResponse(
+                status_code=401,
+                content={"detail": "Missing or invalid API key. Provide X-API-Key header."},
+            )
+    return await call_next(request)
 
 # --- Schemas ---
 
@@ -48,8 +64,7 @@ class ArticleOut(BaseModel):
     fetched_at: datetime
 
     content_clean: Optional[str] = None
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class DQResultOut(BaseModel):
@@ -61,8 +76,7 @@ class DQResultOut(BaseModel):
     score: Optional[float] = None
     checked_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PipelineRunOut(BaseModel):
@@ -76,8 +90,7 @@ class PipelineRunOut(BaseModel):
     started_at: datetime
     finished_at: Optional[datetime] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # --- Endpoints ---

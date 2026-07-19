@@ -112,6 +112,13 @@ _install_noop_lifespan()
 # Fixtures
 # -------------------------------------------------------
 
+@pytest.fixture(autouse=True)
+def _reset_env():
+    """Reset API_KEY before every test so auth tests don't leak state."""
+    main.API_KEY = ""
+    yield
+
+
 @pytest.fixture
 def client():
     """Provide an httpx AsyncClient wired to the FastAPI app."""
@@ -326,6 +333,47 @@ class TestPipelineRuns:
 # -------------------------------------------------------
 # 8. Validation edge cases
 # -------------------------------------------------------
+
+class TestAuth:
+    async def test_health_bypasses_auth(self, client: AsyncClient):
+        """Health endpoint works without API key even when auth is enabled."""
+        pool, conn = _mock_pool()
+        conn.fetchval = AsyncMock(return_value=1)
+        main.pool = pool
+        main.API_KEY = "secret123"  # enable auth
+
+        r = await client.get("/health")
+        assert r.status_code == 200
+
+    async def test_articles_requires_key(self, client: AsyncClient):
+        """Protected endpoint returns 401 without X-API-Key header."""
+        pool, conn = _mock_pool()
+        main.pool = pool
+        main.API_KEY = "secret123"
+
+        r = await client.get("/articles")
+        assert r.status_code == 401
+        assert "API key" in r.json()["detail"]
+
+    async def test_articles_with_good_key(self, client: AsyncClient):
+        """Protected endpoint accepts valid X-API-Key header."""
+        pool, conn = _mock_pool()
+        conn.fetch = AsyncMock(return_value=[_row()])
+        main.pool = pool
+        main.API_KEY = "secret123"
+
+        r = await client.get("/articles", headers={"X-API-Key": "secret123"})
+        assert r.status_code == 200
+
+    async def test_articles_with_bad_key(self, client: AsyncClient):
+        """Protected endpoint rejects wrong X-API-Key header."""
+        pool, conn = _mock_pool()
+        main.pool = pool
+        main.API_KEY = "secret123"
+
+        r = await client.get("/articles", headers={"X-API-Key": "wrong-key"})
+        assert r.status_code == 401
+
 
 class TestValidation:
     async def test_articles_limit_too_high(self, client: AsyncClient):
