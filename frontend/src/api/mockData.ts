@@ -81,6 +81,107 @@ export const mockArticles: Article[] = [
     url: "#", author: "张强", summary: "位于北京城市副中心的城市图书馆、大运河博物馆、城市剧院三大标志性文化建筑将于今年12月正式对公众开放。",
     published_at: ago(16), fetched_at: ago(15, 20),
   },
+  // Batch 2 — more articles for richer demo
+  {
+    id: 16, source: "36氪", category: "tech", title: "OpenAI竞争对手Anthropic获新一轮融资，估值突破800亿美元",
+    url: "#", author: "张颖", summary: "据知情人士透露，AI初创公司Anthropic正进行新一轮融资，估值将突破800亿美元，较上一轮翻倍。",
+    published_at: ago(17), fetched_at: ago(16, 30),
+  },
+  {
+    id: 17, source: "虎嗅", category: "tech", title: "拼多多Temu在东南亚市场份额超越Shopee，成为第一大电商平台",
+    url: "#", author: "黄渊普", summary: "据最新数据显示，拼多多旗下跨境电商平台Temu在东南亚六国的月活用户数已达2.3亿，市场份额首次超越Shopee。",
+    published_at: ago(18), fetched_at: ago(17, 45),
+  },
+  {
+    id: 18, source: "IT之家", category: "tech", title: "苹果Vision Pro 2或将支持眼动追踪输入和裸手手势识别",
+    url: "#", author: "玄隐", summary: "供应链消息称苹果正在开发第二代Vision Pro头显，将大幅减轻重量并引入全新交互方式。",
+    published_at: ago(20), fetched_at: ago(19, 30),
+  },
+  {
+    id: 19, source: "新浪财经", category: "finance", title: "证监会主席：全面推行注册制改革取得阶段性成果",
+    url: "#", author: "刘明", summary: "中国证监会主席在2026金融街论坛年会上表示，资本市场注册制改革三年来成效显著。",
+    published_at: ago(21), fetched_at: ago(20, 30),
+  },
+  {
+    id: 20, source: "第一财经", category: "finance", title: "全球央行数字货币竞赛加速：已有130个国家开展CBDC研究",
+    url: "#", author: "陈晨", summary: "国际清算银行最新报告显示，全球已有130个国家和地区开展央行数字货币研究或试点工作。",
+    published_at: ago(22), fetched_at: ago(21, 45),
+  },
+  {
+    id: 21, source: "经济观察报", category: "finance", title: "北向资金连续12日净流入，外资看好中国资产",
+    url: "#", author: "王晓", summary: "截至今日收盘，北向资金已连续12个交易日净流入，累计净买入额超过800亿元。",
+    published_at: ago(23), fetched_at: ago(22, 30),
+  },
+  {
+    id: 22, source: "新京报", category: "local", title: "北京南站改造工程启动：新增城际快速通道",
+    url: "#", author: "张强", summary: "北京南站启动为期18个月的扩能改造工程，将新增京津城际快速通道和智能导航系统。",
+    published_at: ago(24), fetched_at: ago(23, 30),
+  },
+  {
+    id: 23, source: "北京日报", category: "local", title: "北京空气质量连续200天达优良标准，创10年最佳纪录",
+    url: "#", author: "李华", summary: "北京市生态环境局宣布截至7月19日全市空气质量优良天数已达200天，PM2.5平均浓度同比下降12%。",
+    published_at: ago(25), fetched_at: ago(24, 30),
+  },
+  {
+    id: 24, source: "北京商报", category: "local", title: "北京SKP年销售额突破300亿元，蝉联全球店王",
+    url: "#", author: "赵磊", summary: "北京SKP 2026财年销售额突破300亿元人民币，连续第五年蝉联全球百货商场销售额冠军。",
+    published_at: ago(26), fetched_at: ago(25, 30),
+  },
+  {
+    id: 25, source: "36氪", category: "tech", title: "人形机器人公司Figure AI估值突破500亿美元",
+    url: "#", author: "罗辑", summary: "Figure AI完成新一轮50亿美元融资，由微软和英伟达联合领投，其人形机器人已进入多家汽车工厂试运行。",
+    published_at: ago(28), fetched_at: ago(27, 30),
+  },
+  {
+    id: 26, source: "虎嗅", category: "tech", title: "面试官指南：2026年前端工程师必备技能图谱",
+    url: "#", author: "黄渊普", summary: "Vue 3 + TypeScript + Pinia已成为国内前端主流技术栈，掌握现代CSS和响应式设计也是必备技能。",
+    published_at: ago(30), fetched_at: ago(29, 30),
+  },
+  {
+    id: 27, source: "新浪财经", category: "finance", title: "人民币汇率创年内新高，离岸人民币升破6.85",
+    url: "#", author: "刘明", summary: "受美联储降息预期和中美关系缓和影响，离岸人民币兑美元汇率升破6.85关口，创2026年以来新高。",
+    published_at: ago(32), fetched_at: ago(31, 30),
+  },
+  {
+    id: 28, source: "北京日报", category: "local", title: "北京冬奥场馆赛后利用：冰丝带变身全民健身中心",
+    url: "#", author: "李华", summary: "国家速滑馆'冰丝带'完成赛后改造，新增篮球、羽毛球、攀岩等全民健身设施，日均接待市民超3000人次。",
+    published_at: ago(34), fetched_at: ago(33, 30),
+  },
+  {
+    id: 29, source: "IT之家", category: "tech", title: "微软发布Windows 12预览版：全面集成AI助手Copilot",
+    url: "#", author: "玄隐", summary: "微软向Dev频道推送Windows 12首个公开预览版本，AI助手Copilot深度集成到系统各层级。",
+    published_at: ago(36), fetched_at: ago(35, 30),
+  },
+  {
+    id: 30, source: "第一财经", category: "finance", title: "国际金价突破2800美元/盎司，中国央行连续增持",
+    url: "#", author: "陈晨", summary: "现货黄金价格突破2800美元/盎司创历史新高，中国人民银行已连续18个月增持黄金储备。",
+    published_at: ago(38), fetched_at: ago(37, 30),
+  },
+  {
+    id: 31, source: "新京报", category: "local", title: "北京胡同保护更新：前门东区试点'共生院'模式",
+    url: "#", author: "张强", summary: "前门东区启动'共生院'更新模式试点，在保护胡同风貌的同时引入文创工作室和青年公寓。",
+    published_at: ago(40), fetched_at: ago(39, 30),
+  },
+  {
+    id: 32, source: "经济观察报", category: "finance", title: "2026年二季度GDP同比增长5.2%，超市场预期",
+    url: "#", author: "王晓", summary: "国家统计局公布数据显示，2026年二季度国内生产总值同比增长5.2%，上半年累计增长5.3%。",
+    published_at: ago(42), fetched_at: ago(41, 30),
+  },
+  {
+    id: 33, source: "36氪", category: "tech", title: "腾讯混元大模型开源：参数规模700亿，支持128K上下文",
+    url: "#", author: "张颖", summary: "腾讯宣布混元大模型全面开源，采用Apache 2.0协议，支持128K超长上下文窗口。",
+    published_at: ago(44), fetched_at: ago(43, 30),
+  },
+  {
+    id: 34, source: "北京商报", category: "local", title: "北京数字经济增加值占GDP比重突破45%",
+    url: "#", author: "赵磊", summary: "北京市统计局发布数据显示，2026年上半年北京数字经济增加值占GDP比重达到45.3%。",
+    published_at: ago(46), fetched_at: ago(45, 30),
+  },
+  {
+    id: 35, source: "虎嗅", category: "tech", title: "钉钉发布AI原生办公套件：集成GPT-4级别模型",
+    url: "#", author: "黄渊普", summary: "钉钉推出全新AI原生办公套件，深度集成了AI写作、智能会议纪要、自动数据分析等功能。",
+    published_at: ago(48), fetched_at: ago(47, 30),
+  },
 ];
 
 export const mockArticleDetail: ArticleDetail = {
@@ -107,36 +208,36 @@ export const mockArticleDetail: ArticleDetail = {
 };
 
 export const mockStats: StatsBySource[] = [
-  { source: "36氪", category: "tech", cnt: 2847, last_fetched: ago(2) },
-  { source: "虎嗅", category: "tech", cnt: 2193, last_fetched: ago(2, 50) },
-  { source: "IT之家", category: "tech", cnt: 3156, last_fetched: ago(4, 30) },
-  { source: "新浪财经", category: "finance", cnt: 4521, last_fetched: ago(1) },
-  { source: "第一财经", category: "finance", cnt: 3872, last_fetched: ago(4) },
-  { source: "经济观察报", category: "finance", cnt: 2145, last_fetched: ago(5, 45) },
-  { source: "新京报", category: "local", cnt: 1923, last_fetched: ago(3, 30) },
-  { source: "北京日报", category: "local", cnt: 2456, last_fetched: ago(6, 50) },
-  { source: "北京商报", category: "local", cnt: 1687, last_fetched: ago(8) },
+  { source: "36氪", category: "tech", cnt: 5, last_fetched: ago(2) },
+  { source: "虎嗅", category: "tech", cnt: 5, last_fetched: ago(2, 50) },
+  { source: "IT之家", category: "tech", cnt: 3, last_fetched: ago(4, 30) },
+  { source: "新浪财经", category: "finance", cnt: 4, last_fetched: ago(1) },
+  { source: "第一财经", category: "finance", cnt: 4, last_fetched: ago(4) },
+  { source: "经济观察报", category: "finance", cnt: 3, last_fetched: ago(5, 45) },
+  { source: "新京报", category: "local", cnt: 4, last_fetched: ago(3, 30) },
+  { source: "北京日报", category: "local", cnt: 4, last_fetched: ago(6, 50) },
+  { source: "北京商报", category: "local", cnt: 3, last_fetched: ago(8) },
 ];
 
 export const mockPipelineRuns: PipelineRun[] = [
   {
     id: 156, dag_id: "beijing_news_pipeline", dag_run_id: "manual_2026-07-20T08:00",
-    run_date: "2026-07-20", status: "success", total_articles: 247, dq_avg_score: 94.3,
+    run_date: "2026-07-20", status: "success", total_articles: 35, dq_avg_score: 94.3,
     started_at: ago(2, 5), finished_at: ago(2),
   },
   {
     id: 155, dag_id: "beijing_news_pipeline", dag_run_id: "scheduled_2026-07-20T06:00",
-    run_date: "2026-07-20", status: "success", total_articles: 189, dq_avg_score: 92.8,
+    run_date: "2026-07-20", status: "success", total_articles: 33, dq_avg_score: 92.8,
     started_at: ago(4, 5), finished_at: ago(4),
   },
   {
     id: 154, dag_id: "beijing_news_pipeline", dag_run_id: "scheduled_2026-07-19T18:00",
-    run_date: "2026-07-19", status: "success", total_articles: 312, dq_avg_score: 91.5,
+    run_date: "2026-07-19", status: "success", total_articles: 35, dq_avg_score: 91.5,
     started_at: ago(16, 5), finished_at: ago(16),
   },
   {
     id: 153, dag_id: "beijing_news_pipeline", dag_run_id: "scheduled_2026-07-19T12:00",
-    run_date: "2026-07-19", status: "success", total_articles: 278, dq_avg_score: 93.1,
+    run_date: "2026-07-19", status: "success", total_articles: 32, dq_avg_score: 93.1,
     started_at: ago(22, 5), finished_at: ago(22),
   },
   {
