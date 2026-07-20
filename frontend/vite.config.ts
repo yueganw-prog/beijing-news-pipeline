@@ -1,23 +1,21 @@
 import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import { resolve } from "path";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  plugins: [vue()],
   resolve: {
     alias: {
-      // Use the full build that includes the template compiler
-      // (required because components use inline `template:` strings)
-      vue: "vue/dist/vue.esm-bundler.js",
+      "@": resolve(__dirname, "src"),
     },
-  },
-  define: {
-    // Vue feature flags for better tree-shaking
-    __VUE_OPTIONS_API__: true,
-    __VUE_PROD_DEVTOOLS__: false,
-    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
   },
   build: {
     outDir: "dist",
     assetsDir: "assets",
   },
+  // Base path: repo name for production GH Pages, root for dev.
+  // Change to '/' if using a custom domain.
+  base: command === "build" ? "/beijing-news-pipeline/" : "/",
   server: {
     proxy: {
       "/api": {
@@ -30,4 +28,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));
