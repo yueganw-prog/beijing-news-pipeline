@@ -20,7 +20,6 @@ build/
 # --- Node ---
 node_modules/
 frontend/node_modules/
-frontend/package-lock.json
 frontend/yarn.lock
 miniapp/node_modules/
 
