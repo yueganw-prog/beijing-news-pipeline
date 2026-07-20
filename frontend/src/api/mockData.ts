@@ -5,7 +5,7 @@ function ago(hours: number, minutes = 0): string {
   return d.toISOString();
 }
 
-export const mockArticles: Article[] = [
+const handCrafted: Article[] = [
   {
     id: 1, source: "36氪", category: "tech", title: "字节跳动发布豆包大模型3.0，参数规模达万亿级别",
     url: "#", author: "张颖", summary: "字节跳动旗下豆包大模型发布第三代版本，在推理、代码生成和多模态能力上全面提升，部分基准测试超越GPT-4o。",
@@ -219,6 +219,73 @@ export const mockStats: StatsBySource[] = [
   { source: "北京日报", category: "local", cnt: 2456, last_fetched: ago(6, 50) },
   { source: "北京商报", category: "local", cnt: 1687, last_fetched: ago(8) },
 ];
+
+// ---- Bulk article generator (200+ articles for realistic demo) ----
+const sourceDefs = [
+  { name: "36氪", category: "tech" },
+  { name: "虎嗅", category: "tech" },
+  { name: "IT之家", category: "tech" },
+  { name: "新浪财经", category: "finance" },
+  { name: "第一财经", category: "finance" },
+  { name: "经济观察报", category: "finance" },
+  { name: "新京报", category: "local" },
+  { name: "北京日报", category: "local" },
+  { name: "北京商报", category: "local" },
+];
+const authors = ["张颖", "李想", "玄隐", "王晓", "陈晨", "刘明", "张强", "李华", "赵磊", "罗辑", "黄渊普"];
+const titleTemplates: Record<string, string[]> = {
+  tech: [
+    "AI大模型在{s}领域实现新突破", "{s}发布年度技术趋势报告", "2026年{s}行业投融资回顾",
+    "{s}宣布开源最新AI框架", "量子计算商用化进程加速：{s}抢先布局", "{s}创始人谈技术创新",
+    "自动驾驶L4落地{s}场景", "{s}完成新一轮战略融资", "5G-A商用网络覆盖{s}地区",
+    "{s}发布新一代智能硬件", "云原生技术在企业{s}场景的应用", "{s}CTO解读技术路线图",
+  ],
+  finance: [
+    "{s}发布2026上半年财报：营收同比增长", "人民币兑美元汇率创阶段新高", "北交所{s}企业IPO审核提速",
+    "央行开展{s}亿元逆回购操作", "A股{s}板块领涨两市", "国际油价震荡：{s}影响几何",
+    "数字人民币在{s}场景试点扩大", "{s}行业监管新政解读", "全球供应链重构：{s}的机遇",
+    "债券市场{s}品种受追捧", "私募基金布局{s}赛道", "社保基金增持{s}板块",
+  ],
+  local: [
+    "北京{s}区域城市更新方案获批", "{s}区新增三所市级示范学校", "北京地铁{s}线建设最新进展",
+    "京津冀协同发展：{s}项目落地", "北京{s}公园完成改造对外开放", "2026中关村论坛{s}分论坛举办",
+    "北京{s}商圈消费持续升温", "城市副中心{s}配套设施开工", "{s}区启动老旧小区改造",
+    "北京国际电影节在{s}区开幕", "市发改委批复{s}基础设施项目", "北京{s}博物馆获国家级评估",
+  ],
+};
+const placeholders: Record<string, string[]> = {
+  tech: ["医疗", "金融", "教育", "制造业", "物流", "零售", "能源", "农业"],
+  finance: ["半导体", "新能源", "消费电子", "生物医药", "高端装备", "人工智能", "新材料"],
+  local: ["朝阳", "海淀", "通州", "大兴", "丰台", "石景山", "东城", "西城", "昌平", "顺义"],
+};
+
+function genArticle(id: number, hoursAgo: number): Article {
+  const src = sourceDefs[id % sourceDefs.length];
+  const tmpls = titleTemplates[src.category] || titleTemplates.tech;
+  const phs = placeholders[src.category] || placeholders.tech;
+  const title = tmpls[id % tmpls.length].replace("{s}", phs[id % phs.length]);
+  const author = authors[id % authors.length];
+  const hours = Math.max(1, hoursAgo - id * 0.3);
+  return {
+    id,
+    source: src.name,
+    category: src.category,
+    title,
+    url: "#",
+    author,
+    summary: `${title}。${author}报道，该项目预计将对${src.category === "tech" ? "科技" : src.category === "finance" ? "财经" : "本地"}行业产生积极影响，相关数据显示市场反应良好。`,
+    published_at: ago(Math.floor(hours), Math.floor(Math.random() * 60)),
+    fetched_at: ago(Math.floor(hours * 0.9), 0),
+  };
+}
+
+function generateBulkArticles(startId: number, count: number): Article[] {
+  return Array.from({ length: count }, (_, i) => genArticle(startId + i, 100 + i * 2));
+}
+
+// Merge hand-crafted + generated articles
+const bulkArticles = generateBulkArticles(36, 170);
+export const mockArticles: Article[] = [...handCrafted, ...bulkArticles];
 
 export const mockPipelineRuns: PipelineRun[] = [
   {
