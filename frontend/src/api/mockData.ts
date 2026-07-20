@@ -207,37 +207,38 @@ export const mockArticleDetail: ArticleDetail = {
 业内分析师认为，豆包3.0的发布标志着中国AI企业在通用大模型领域已经具备了与国际顶尖水平同台竞技的实力。`,
 };
 
+// Cumulative totals (pipeline running since 2026-01). Demo article list shows latest batch of 35.
 export const mockStats: StatsBySource[] = [
-  { source: "36氪", category: "tech", cnt: 5, last_fetched: ago(2) },
-  { source: "虎嗅", category: "tech", cnt: 5, last_fetched: ago(2, 50) },
-  { source: "IT之家", category: "tech", cnt: 3, last_fetched: ago(4, 30) },
-  { source: "新浪财经", category: "finance", cnt: 4, last_fetched: ago(1) },
-  { source: "第一财经", category: "finance", cnt: 4, last_fetched: ago(4) },
-  { source: "经济观察报", category: "finance", cnt: 3, last_fetched: ago(5, 45) },
-  { source: "新京报", category: "local", cnt: 4, last_fetched: ago(3, 30) },
-  { source: "北京日报", category: "local", cnt: 4, last_fetched: ago(6, 50) },
-  { source: "北京商报", category: "local", cnt: 3, last_fetched: ago(8) },
+  { source: "36氪", category: "tech", cnt: 2847, last_fetched: ago(2) },
+  { source: "虎嗅", category: "tech", cnt: 2193, last_fetched: ago(2, 50) },
+  { source: "IT之家", category: "tech", cnt: 3156, last_fetched: ago(4, 30) },
+  { source: "新浪财经", category: "finance", cnt: 4521, last_fetched: ago(1) },
+  { source: "第一财经", category: "finance", cnt: 3872, last_fetched: ago(4) },
+  { source: "经济观察报", category: "finance", cnt: 2145, last_fetched: ago(5, 45) },
+  { source: "新京报", category: "local", cnt: 1923, last_fetched: ago(3, 30) },
+  { source: "北京日报", category: "local", cnt: 2456, last_fetched: ago(6, 50) },
+  { source: "北京商报", category: "local", cnt: 1687, last_fetched: ago(8) },
 ];
 
 export const mockPipelineRuns: PipelineRun[] = [
   {
     id: 156, dag_id: "beijing_news_pipeline", dag_run_id: "manual_2026-07-20T08:00",
-    run_date: "2026-07-20", status: "success", total_articles: 35, dq_avg_score: 94.3,
+    run_date: "2026-07-20", status: "success", total_articles: 247, dq_avg_score: 94.3,
     started_at: ago(2, 5), finished_at: ago(2),
   },
   {
     id: 155, dag_id: "beijing_news_pipeline", dag_run_id: "scheduled_2026-07-20T06:00",
-    run_date: "2026-07-20", status: "success", total_articles: 33, dq_avg_score: 92.8,
+    run_date: "2026-07-20", status: "success", total_articles: 189, dq_avg_score: 92.8,
     started_at: ago(4, 5), finished_at: ago(4),
   },
   {
     id: 154, dag_id: "beijing_news_pipeline", dag_run_id: "scheduled_2026-07-19T18:00",
-    run_date: "2026-07-19", status: "success", total_articles: 35, dq_avg_score: 91.5,
+    run_date: "2026-07-19", status: "success", total_articles: 312, dq_avg_score: 91.5,
     started_at: ago(16, 5), finished_at: ago(16),
   },
   {
     id: 153, dag_id: "beijing_news_pipeline", dag_run_id: "scheduled_2026-07-19T12:00",
-    run_date: "2026-07-19", status: "success", total_articles: 32, dq_avg_score: 93.1,
+    run_date: "2026-07-19", status: "success", total_articles: 278, dq_avg_score: 93.1,
     started_at: ago(22, 5), finished_at: ago(22),
   },
   {
