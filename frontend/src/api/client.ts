@@ -50,12 +50,11 @@ export async function fetchWithFallback<T>(
   try {
     return await tryFetch<T>(url, signal);
   } catch (err) {
-    // Network errors (offline, timeout, CORS) → fall back
-    if (err instanceof TypeError || err instanceof DOMException) {
-      console.info("[API] Network unreachable, using mock data for:", url);
+    // Network errors or HTTP errors → fall back to mock
+    if (err instanceof TypeError || err instanceof DOMException || err instanceof ApiClientError) {
+      console.info("[API] Backend unavailable, using mock data for:", url);
       return mockFallback();
     }
-    // Pass through ApiClientErrors (the API IS reachable but returned an error)
     throw err;
   }
 }
