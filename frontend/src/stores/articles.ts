@@ -28,7 +28,7 @@ export const useArticlesStore = defineStore("articles", () => {
         category: category.value ?? undefined,
         source: source.value ?? undefined,
         search: searchQuery.value.trim() || undefined,
-        limit: 200,
+        limit: 500,
       });
       items.value = data;
     } catch (e) {

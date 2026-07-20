@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppTopbar
-      :title="`文章列表 · ${categoryLabel}`"
+      :title="`文章列表 · ${categoryLabel}（共 ${store.items.length} 篇）`"
       :refreshing="store.loading"
       @refresh="store.fetchArticles()"
       @toggle-mobile="$emit('toggleMobile')"

@@ -1,0 +1,1 @@
+import{d as s,o as a,c as o,a as n,t as r,z as l}from"./index-D8LEa87J.js";const c={class:"empty-state",role:"status"},d=s({__name:"EmptyState",props:{message:{default:"暂无数据"}},setup(e){return(t,p)=>(a(),o("div",c,[n("p",null,r(e.message),1),l(t.$slots,"default")]))}});export{d as _};
