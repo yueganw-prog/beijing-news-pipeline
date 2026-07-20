@@ -39,21 +39,21 @@ export function getArticles(params: ArticleQueryParams = {}): Promise<Article[]>
 export function getArticle(id: number): Promise<ArticleDetail> {
   return fetchWithFallback<ArticleDetail>(
     `${BASE}/articles/${id}`,
-    () => structuredClone(mockArticleDetail),
+    () => ({ ...mockArticleDetail }),
   );
 }
 
 export function getStatsBySource(): Promise<StatsBySource[]> {
   return fetchWithFallback<StatsBySource[]>(
     `${BASE}/stats/by-source`,
-    () => structuredClone(mockStats),
+    () => [...mockStats],
   );
 }
 
 export function getPipelineRuns(limit = 5): Promise<PipelineRun[]> {
   return fetchWithFallback<PipelineRun[]>(
     `${BASE}/pipeline-runs?limit=${limit}`,
-    () => structuredClone(mockPipelineRuns).slice(0, limit),
+    () => mockPipelineRuns.slice(0, limit),
   );
 }
 
@@ -66,7 +66,7 @@ export function getDQResults(limit = 5): Promise<DQResult[]> {
 
 // ---- client-side filtering for mock mode ----
 function filterMockArticles(params: ArticleQueryParams): Article[] {
-  let items = structuredClone(mockArticles);
+  let items: Article[] = mockArticles; // no clone needed — filter already returns new array
   if (params.category) {
     items = items.filter((a) => a.category === params.category);
   }
@@ -82,6 +82,6 @@ function filterMockArticles(params: ArticleQueryParams): Article[] {
     );
   }
   const offset = params.offset || 0;
-  const limit = params.limit || 50;
+  const limit = params.limit || 200;
   return items.slice(offset, offset + limit);
 }
