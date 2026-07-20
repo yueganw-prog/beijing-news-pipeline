@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <AppTopbar
       title="文章详情"
       :show-refresh="false"

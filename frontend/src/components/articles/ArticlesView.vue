@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="view-wrapper">
     <!-- Demo banner -->
     <div v-if="isDemo" class="demo-banner">
       <BaseIcon name="database" :size="12" />

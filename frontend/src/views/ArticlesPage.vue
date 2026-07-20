@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <AppTopbar
       :title="`文章列表 · ${categoryLabel}（共 ${store.items.length} 篇）`"
       :refreshing="store.loading"

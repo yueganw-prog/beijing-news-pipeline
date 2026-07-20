@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <AppTopbar
       title="仪表盘"
       :refreshing="dashboard.loading"
